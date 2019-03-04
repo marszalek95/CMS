@@ -152,7 +152,7 @@ class Db_object
     }
     
     
-    //PHOTOS
+    /* Photo functions */
     
         public function set_file($file)
     {
