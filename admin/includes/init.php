@@ -14,7 +14,7 @@ require_once(INCLUDES_PATH.DS."user.php");
 require_once(INCLUDES_PATH.DS."session.php");
 require_once(INCLUDES_PATH.DS."comment.php");
 require_once(INCLUDES_PATH.DS."pagination.php");
-
+require_once(INCLUDES_PATH.DS."counter.php");
 
 
 
