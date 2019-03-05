@@ -19,7 +19,7 @@
                                         <i class="fa fa-users fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $session->count; ?></div>
+                                        <div class="huge"><?php echo Counter::show_counter() ?></div>
                                         <div>New Views</div>
                                     </div>
                                 </div>
