@@ -13,7 +13,7 @@ $paginate = new Pagination($page, $items_per_page, $items_total_count);
 
 $photos = Photo::photos_pagination($items_per_page, $paginate->offset());
 
-
+Counter::count_visits();
 
 ?>
 
