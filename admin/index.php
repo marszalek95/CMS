@@ -11,6 +11,7 @@ if(!$session->is_signed_in())
 
 ?>
 
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,10 +35,7 @@ if(!$session->is_signed_in())
             
             </div>
             <!-- /.container-fluid -->
-            <?php
-            
-
- ?>
+  
           
             
             
@@ -45,7 +43,7 @@ if(!$session->is_signed_in())
            
             
 
-        </div>
+        </div
         <!-- /#page-wrapper -->
 
   <?php include("includes/footer.php"); ?>
