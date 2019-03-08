@@ -1,4 +1,12 @@
- <div class="navbar-header">
+<?php
+
+$new_comments = Comment::find_new_comments();
+$comments_counter = count($new_comments);
+
+?>
+
+
+<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -14,28 +22,11 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
+                                                             
                         <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            <a href="new_comments.php">You have <?php echo $comments_counter; ?> new comments!</a>
                         </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
+                
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -46,13 +37,10 @@
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="edit_user.php?id=<?php echo $session->user_id; ?>"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="my_photos.php?id=<?php echo $session->user_id; ?>"><i class="fa fa-fw fa-user"></i> My photos</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            <a href="edit_user.php?id=<?php echo $session->user_id; ?>"><i class="fa fa-fw fa-gear"></i> Profie settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
