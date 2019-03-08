@@ -7,7 +7,7 @@ $page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 
 $user_id = $_GET['id'];
 
-$items_per_page = 16;
+$items_per_page = 4;
 
 $items_total_count = Photo::count_records_by_user($user_id);
 
