@@ -14,12 +14,15 @@ $author = User::find_by_id($photo->add_by_id);
 
 $comments = Comment::find_all_comments($_GET['id']);
 
+Photo::count_photo_views($_GET['id']);
+
 if(isset($_POST['submit']))
 {
 $comment_read = new Comment();
 $comment_read->photo_id = $_GET['id'];
 $comment_read->author = $_POST['author'];
 $comment_read->body = $_POST['body'];
+$comment_read->status = 0;
 
 
 $comment_read->create();
