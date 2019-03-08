@@ -1118,7 +1118,7 @@ img {
   height: auto;
 }
 .img-rounded {
-  border-radius: 6px;
+  border-radius: 10px;
 }
 .img-thumbnail {
   display: inline-block;
@@ -4878,6 +4878,7 @@ a.badge:focus {
 }
 .thumbnail {
   display: block;
+  touch-action: auto;
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
