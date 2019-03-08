@@ -5,7 +5,17 @@
 <?php
 
 
-$photos = Photo::find_all();
+$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
+
+$items_per_page = 4;
+
+$items_total_count = Photo::count_records();
+
+$paginate = new Pagination($page, $items_per_page, $items_total_count);
+
+$photos = Photo::photos_pagination($items_per_page, $paginate->offset());
+
+
 
 
 
@@ -57,6 +67,7 @@ $photos = Photo::find_all();
                                         <th>Title</th>
                                         <th>Size</th>
                                         <th>Comments</th>
+                                        <th>Views</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,7 +77,7 @@ $photos = Photo::find_all();
                                     <tr>
                                         
    
-                                        <td><img class="admin-photo-thumbnail" src="<?php echo $photo->picture_path(); ?>" alt="">
+                                        <td><img class="img-responsive img-rounded" src="<?php echo $photo->picture_path(); ?>" alt="">
                                         
                                             <div class="pictures_link">
                                                 <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
@@ -85,15 +96,12 @@ $photos = Photo::find_all();
                                         <td><?php echo $photo->filename; ?></td>
                                         <td><?php echo $photo->title; ?></td>
                                         <td><?php echo $photo->size; ?></td>
-                                         <td><a href="comment_photo.php?id=<?php echo $photo->id; ?>"><?php 
-                                        
-                                        $comments = Comment::find_all_comments($photo->id);
-                                        
-                                        echo count($comments);
-
-                                        
-                                        
+                                        <td><a href="comment_photo.php?id=<?php echo $photo->id; ?>"><?php                                        
+                                        $comments = Comment::find_all_comments($photo->id);                                       
+                                        echo count($comments);                                     
                                         ?></a></td>
+                                        <td><?php echo $photo->show_counter($photo->id); ?></td>
+                                         
                                         
                                         <?php                                        endforeach; ?>
                                     </tr>
@@ -103,6 +111,45 @@ $photos = Photo::find_all();
                     </div>
                 </div>
                 <!-- /.row -->
+                
+                <div class="row col-md-12" align="center">
+                
+                <ul class="pagination">
+                    
+                    <?php 
+                    
+                    if($paginate->page_total() > 1)
+                    {
+                        if($paginate->has_previous())
+                        {
+                            echo "<li class='previous'><a href='photos.php?page={$paginate->previous()}'>Previous</a></li>";
+                        }
+                        
+                        for ($i = 1; $i <= $paginate->page_total(); $i++)
+                        {
+                            if($i == $paginate->current_page)
+                            {
+                                echo "<li class='active'><a href='photos.php?age={$i}'>{$i}</a></li>";
+                            }
+                            else
+                            {
+                                echo "<li><a href='photos.php?page={$i}'>{$i}</a></li>";
+                            }
+                        }
+                        
+                        if($paginate->has_next())
+                        {
+                            echo "<li class='next'><a href='photos.php?page={$paginate->next()}'>Next</a></li>";
+                        }
+                
+                        
+                    }
+                    
+                    ?>
+                    
+                </ul>
+                
+            </div>
 
             </div>
             <!-- /.container-fluid -->
