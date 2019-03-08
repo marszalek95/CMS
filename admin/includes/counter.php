@@ -14,10 +14,12 @@ class Counter
         global $database;
         
         $result = $database->query("SELECT counter FROM counter");
-        if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            return $visits = $row["counter"];
-        }
+        if ($result->num_rows > 0) 
+        {
+            while($row = $result->fetch_assoc()) 
+            {
+                return $visits = $row["counter"];
+            }
         } 
         else 
         {
