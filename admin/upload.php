@@ -14,6 +14,7 @@ if(isset($_POST['submit']))
     $photo->description = $_POST['description'];
     $photo->add_by_id = $session->user_id;
     $photo->set_file($_FILES['file_upload']);
+    $photo->views = 0;
     
     if($photo->save_all())
     {
