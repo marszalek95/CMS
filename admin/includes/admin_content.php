@@ -1,10 +1,12 @@
             <div class="container-fluid">
-
+                
+                
+                 
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Admin
+                            Statistics
                           
                         </h1>
                         
@@ -89,7 +91,7 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
+                                        <i class="fa fa-edit fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo Comment::count_records(); ?></div>
@@ -110,7 +112,7 @@
 
                         </div> <!--First Row-->
                        
-                        <div id="piechart" style="width: 900px; height: 500px;"></div>
+                 
 
                         
                         <ol class="breadcrumb">
