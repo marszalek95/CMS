@@ -47,26 +47,31 @@ else
 
 
 <div class="col-md-4 col-md-offset-3">
+    
+    <center><h1 class="page-header login-form-page">Login form</h1></center>
+                            
+                          
+                        
 
 <h4 class="bg-danger"><?php echo $the_message; ?></h4>
 	
 <form id="login-id" action="" method="post">
 	
 <div class="form-group">
-	<label for="username">Username</label>
-	<input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>" >
+    <label for="username" class="login-form-page">Username:</label>
+    <input type="text" class="form-control" name="username" size="10" value="<?php echo htmlentities($username); ?>" >
 
 </div>
 
 <div class="form-group">
-	<label for="password">Password</label>
-	<input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
+	<label for="password" class="login-form-page">Password:</label>
+        <input type="password" class="form-control" name="password" size="20" value="<?php echo htmlentities($password); ?>">
 	
 </div>
 
 
 <div class="form-group">
-<input type="submit" name="submit" value="Submit" class="btn btn-primary">
+<input type="submit" name="submit" value="Login" class="btn btn-primary">
 
 </div>
 
