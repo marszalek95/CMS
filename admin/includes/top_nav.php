@@ -1,6 +1,7 @@
 <?php
 
-$new_comments = Comment::find_new_comments();
+$user_session = User::find_by_id($session->user_id);
+$new_comments = Comment::find_new_comments($session->user_id);
 $comments_counter = count($new_comments);
 
 ?>
@@ -31,9 +32,7 @@ $comments_counter = count($new_comments);
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 
-                        <?php $user_session = User::find_by_id($session->user_id);
-                              echo "{$user_session->first_name} {$user_session->last_name}";
-                        ?>
+                        <?php echo "{$user_session->first_name} {$user_session->last_name}"; ?>
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
