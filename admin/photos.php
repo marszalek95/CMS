@@ -13,7 +13,9 @@ $items_total_count = Photo::count_records();
 
 $paginate = new Pagination($page, $items_per_page, $items_total_count);
 
-$photos = Photo::photos_pagination($items_per_page, $paginate->offset());
+$last_page = $paginate->last_page();
+
+$photos = Photo::find_all_pagination($items_per_page, $paginate->offset());
 
 
 
@@ -54,7 +56,6 @@ $photos = Photo::photos_pagination($items_per_page, $paginate->offset());
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Photos
-                          
                         </h1>
                         <div class="col-md-12">
                             <table class="table table-hover">
@@ -77,10 +78,10 @@ $photos = Photo::photos_pagination($items_per_page, $paginate->offset());
                                     <tr>
                                         
    
-                                        <td><img class="img-responsive img-rounded" src="<?php echo $photo->picture_path(); ?>" alt="">
+                                        <td><img class="admin-photo-thumbnail img-responsive" src="<?php echo $photo->picture_path(); ?>" alt="">
                                         
                                             <div class="pictures_link">
-                                                <a href="delete_photo.php?id=<?php echo $photo->id; ?>">Delete</a>
+                                                <a href="delete_photo.php?id=<?php echo $photo->id . "&lastpage=" . $last_page; ?>">Delete</a>
                                                 <a href="edit_photo.php?id=<?php echo $photo->id; ?>">Edit</a>
                                                 <a href="../photo.php?id=<?php echo $photo->id; ?>">View</a>
                                             </div>
@@ -129,7 +130,7 @@ $photos = Photo::photos_pagination($items_per_page, $paginate->offset());
                         {
                             if($i == $paginate->current_page)
                             {
-                                echo "<li class='active'><a href='photos.php?age={$i}'>{$i}</a></li>";
+                                echo "<li class='active'><a href='photos.php?page={$i}'>{$i}</a></li>";
                             }
                             else
                             {
