@@ -13,7 +13,10 @@ $comment = Comment::find_by_id($_GET['id']);
 if($comment)
 {
     $comment->delete();
-    redirect($_SERVER['HTTP_REFERER']);
+    $last_page = $_SERVER['HTTP_REFERER'];
+    $last_page_number = $_GET['lastpage'];
+    $last_page = substr($last_page, 0, -1) . $last_page_number;
+    redirect($last_page);
 }
 else
 {
