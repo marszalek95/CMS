@@ -20,9 +20,11 @@ if(isset($_POST['submit']))
 {
 $comment_read = new Comment();
 $comment_read->photo_id = $_GET['id'];
+$comment_read->user_id = $photo->add_by_id;
 $comment_read->author = $_POST['author'];
 $comment_read->body = $_POST['body'];
 $comment_read->status = 0;
+$comment_read->date = date('F d, Y') . ' at ' . date('G:i');
 
 
 $comment_read->create();
@@ -67,7 +69,7 @@ redirect("photo.php?id={$_GET['id']}");
                 <hr>
 
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $photo->date; ?></p>
 
                 <hr>
 
@@ -111,12 +113,12 @@ redirect("photo.php?id={$_GET['id']}");
                 <?php foreach ($comments as $comment) : ?>
                 <!-- Comment -->
                 <div class="media">
-                    <a class="pull-left" href="#">
+                    <a class="pull-left">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment->author; ?>
-            
+                            <small><?php echo $comment->date ?></small>
                         </h4>
                         <?php echo $comment->body; ?>
                             </div>
@@ -129,61 +131,9 @@ redirect("photo.php?id={$_GET['id']}");
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
 
-                <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
-                    <!-- /.input-group -->
-                </div>
-
-                <!-- Blog Categories Well -->
-                <div class="well">
-                    <h4>Blog Categories</h4>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled">
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                                <li><a href="#">Category Name</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div>
-
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-                </div>
+            <?php include("includes/sidebar.php"); ?>  
 
             </div>
-
-        </div>
         <!-- /.row -->
 
        
