@@ -15,7 +15,7 @@ if($photo)
 {
     $photo->delete_all();
     $comment->delete_comment($_GET['id']);
-    redirect("photos.php");
+    redirect("photos.php?page={$_GET['lastpage']}");
 }
 else
 {
