@@ -4,8 +4,17 @@
 
 <?php
 
+$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$comments = Comment::find_all_comments($_GET['id']);
+$items_per_page = 4;
+
+$items_total_count = count(Comment::find_all_comments($_GET['id']));
+
+$paginate = new Pagination($page, $items_per_page, $items_total_count);
+
+$last_page = $paginate->last_page();
+
+$comments = Comment::find_all_comments_pagination($_GET['id'], $items_per_page, $paginate->offset());
 
 
 ?>
@@ -62,7 +71,7 @@ $comments = Comment::find_all_comments($_GET['id']);
                                         <td><?php echo $comment->id; ?></td>
                                         <td><?php echo $comment->author; ?>                                        
                                             <div class="pictures_link">
-                                                <a href="delete_comment.php?id=<?php echo $comment->id; ?>">Delete</a>
+                                                <a href="delete_comment.php?id=<?php echo $comment->id . "&lastpage=" . $last_page; ?>">Delete</a>
                                             </div>
                                         </td>
                                         <td><?php echo $comment->body; ?></td>
@@ -74,6 +83,44 @@ $comments = Comment::find_all_comments($_GET['id']);
                     </div>
                 </div>
                 <!-- /.row -->
+                <div class="row col-md-12" align="center">
+                
+                <ul class="pagination">
+                    
+                    <?php 
+                    
+                    if($paginate->page_total() > 1)
+                    {
+                        if($paginate->has_previous())
+                        {
+                            echo "<li class='previous'><a href='comment_photo.php?id={$_GET['id']}&page={$paginate->previous()}'>Previous</a></li>";
+                        }
+                        
+                        for ($i = 1; $i <= $paginate->page_total(); $i++)
+                        {
+                            if($i == $paginate->current_page)
+                            {
+                                echo "<li class='active'><a href='comment_photo.php?id={$_GET['id']}&page={$i}'>{$i}</a></li>";
+                            }
+                            else
+                            {
+                                echo "<li><a href='comment_photo.php?id={$_GET['id']}&page={$i}'>{$i}</a></li>";
+                            }
+                        }
+                        
+                        if($paginate->has_next())
+                        {
+                            echo "<li class='next'><a href='comment_photo.php?id={$_GET['id']}&page={$paginate->next()}'>Next</a></li>";
+                        }
+                
+                        
+                    }
+                    
+                    ?>
+                    
+                </ul>
+                
+            </div>
 
             </div>
             <!-- /.container-fluid -->
