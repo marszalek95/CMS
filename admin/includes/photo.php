@@ -5,7 +5,7 @@
 class Photo extends Db_object
 {
     protected static $db_table = "photos";
-    protected static $db_table_fields = ['add_by_id', 'title', 'caption', 'description', 'filename', 'alternate_text', 'type', 'size', 'views'];
+    protected static $db_table_fields = ['add_by_id', 'title', 'caption', 'description', 'filename', 'alternate_text', 'type', 'size', 'views', 'date'];
     public $id;
     public $add_by_id;
     public $title;
@@ -16,17 +16,13 @@ class Photo extends Db_object
     public $type;
     public $size;
     public $views;
+    public $date;
 
     public $tmp_path;
     public $upload_directory = "images";
 
     
-    public static function photos_pagination($items_per_page, $offset)
-    {
-        $sql = "SELECT * FROM " . static::$db_table . " LIMIT {$items_per_page} OFFSET {$offset}";
-        
-        return static::find_this_query($sql);
-    }
+    
     
     public static function count_records_by_user($user_id)
     {
@@ -46,6 +42,14 @@ class Photo extends Db_object
 
     }
     
+    public static function search_photo($query, $items_per_page, $offset)
+    {
+        $sql = "SELECT * FROM " . self::$db_table . " WHERE title LIKE '%{$query}%' ORDER BY add_by_id ASC LIMIT {$items_per_page} OFFSET {$offset}";
+        
+        return self::find_this_query($sql);
+    }
+
+
     public static function count_photo_views($id) 
     {
         global $database;
