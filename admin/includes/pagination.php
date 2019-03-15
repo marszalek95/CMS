@@ -45,6 +45,11 @@ class Pagination
     {
         return ($this->current_page - 1) * $this->items_per_page;
     }
+    
+    public function last_page()
+    {
+        return fmod($this->items_total_count, $this->items_per_page) == 1 ? $this->current_page - 1 : $this->current_page;
+    }
 
     
 }
