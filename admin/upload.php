@@ -15,6 +15,7 @@ if(isset($_POST['submit']))
     $photo->add_by_id = $session->user_id;
     $photo->set_file($_FILES['file_upload']);
     $photo->views = 0;
+    $photo->date = date('F d, Y') . ' at ' . date('G:i');
     
     if($photo->save_all())
     {
