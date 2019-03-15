@@ -11,7 +11,7 @@ $items_total_count = Photo::count_records();
 
 $paginate = new Pagination($page, $items_per_page, $items_total_count);
 
-$photos = Photo::photos_pagination($items_per_page, $paginate->offset());
+$photos = Photo::find_all_pagination($items_per_page, $paginate->offset());
 
 Counter::count_visits();
 
@@ -26,7 +26,7 @@ Counter::count_visits();
                 
                 
                     
-                    <div class="col-xs-6 col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         
                         <a class="thumbnail" href="photo.php?id=<?php echo $photo->id; ?>">
                             
@@ -85,16 +85,6 @@ Counter::count_visits();
             </div>
 
 
-<!--
-             Blog Sidebar Widgets Column 
-            <div class="col-md-4">
 
-            
-                 <?php //include("includes/sidebar.php"); ?>
-
-
-
-        </div>-->
-        <!-- /.row -->
 
         <?php include("includes/footer.php"); ?>
