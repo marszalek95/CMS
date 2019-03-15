@@ -4,8 +4,17 @@
 
 <?php
 
+$page = !empty($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$users = User::find_all();
+$items_per_page = 4;
+
+$items_total_count = User::count_records();
+
+$paginate = new Pagination($page, $items_per_page, $items_total_count);
+
+$last_page = $paginate->last_page();
+
+$users = User::find_all_pagination($items_per_page, $paginate->offset());
 
 
 ?>
@@ -67,7 +76,7 @@ $users = User::find_all();
                                         <td><img class="user-image" src="<?php echo $user->image_path_and_placeholder(); ?>" alt=""> </td>
                                         <td><?php echo $user->username; ?>                                        
                                             <div class="pictures_link">
-                                                <a href="delete_user.php?id=<?php echo $user->id; ?>">Delete</a>
+                                                <a href="delete_user.php?id=<?php echo $user->id . "&lastpage=" . $last_page; ?>">Delete</a>
                                                 <a href="edit_user.php?id=<?php echo $user->id; ?>">Edit</a>
                                             </div>
                                         </td>
@@ -81,6 +90,44 @@ $users = User::find_all();
                     </div>
                 </div>
                 <!-- /.row -->
+                <div class="row col-md-12" align="center">
+                
+                <ul class="pagination">
+                    
+                    <?php 
+                    
+                    if($paginate->page_total() > 1)
+                    {
+                        if($paginate->has_previous())
+                        {
+                            echo "<li class='previous'><a href='users.php?page={$paginate->previous()}'>Previous</a></li>";
+                        }
+                        
+                        for ($i = 1; $i <= $paginate->page_total(); $i++)
+                        {
+                            if($i == $paginate->current_page)
+                            {
+                                echo "<li class='active'><a href='users.php?age={$i}'>{$i}</a></li>";
+                            }
+                            else
+                            {
+                                echo "<li><a href='users.php?page={$i}'>{$i}</a></li>";
+                            }
+                        }
+                        
+                        if($paginate->has_next())
+                        {
+                            echo "<li class='next'><a href='users.php?page={$paginate->next()}'>Next</a></li>";
+                        }
+                
+                        
+                    }
+                    
+                    ?>
+                    
+                </ul>
+                
+            </div>
 
             </div>
             <!-- /.container-fluid -->
