@@ -13,7 +13,7 @@ $user = User::find_by_id($_GET['id']);
 if($user)
 {
     $user->delete_all();
-    redirect("users.php");
+    redirect("users.php?page={$_GET['lastpage']}");
 }
 else
 {
