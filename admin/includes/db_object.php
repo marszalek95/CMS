@@ -22,13 +22,6 @@ class Db_object
         return static::find_this_query("SELECT * FROM " . static::$db_table . "");
     }
     
-    public static function find_all_pagination($items_per_page, $offset)
-    {
-        $sql = "SELECT * FROM " . static::$db_table . " LIMIT {$items_per_page} OFFSET {$offset}";
-        
-        return static::find_this_query($sql);
-    }
-    
     public static function find_by_id($id)
     {
 
@@ -227,16 +220,18 @@ class Db_object
     
     public function save_all()
     {
-        if($this->upload_photo() && $this->create())
+        if($this->upload_photo())
         {
+            $this->create();
             return true;
         }
     }
     
     public function delete_all()
     {
-        if($this->delete() && $this->delete_photo())
+        if($this->delete())
         {
+            $this->delete_photo();
             return true;
         }
     }
