@@ -1,17 +1,19 @@
 <?php
+/* 
+ * Specific methods to connecting database and querying
+ */
+
 
 require_once("new_config.php");
 
-class Database {
-    
+class Database 
+{
     public $connection;
     
     public function __construct()
     {
         $this->open_db_connection();
     }
-       
-
 
     public function open_db_connection()
     {
@@ -20,8 +22,7 @@ class Database {
         if(mysqli_connect_errno())
         {
             die("Database connection failed!" . mysqli_error());
-        }
-        
+        }    
     }
     
     public function query($sql)

@@ -1,5 +1,11 @@
 
 
+.login-form-page {
+    
+    color: #999;
+    
+}
+
 .admin-photo-thumbnail {
     
     width:  200px;
@@ -111,3 +117,5 @@ margin:10px;
 position: fixed !important;
 
 }
+
+

@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     $photo->views = 0;
     $photo->date = date('F d, Y') . ' at ' . date('G:i');
     
-    if($photo->save_all())
+    if($photo->save_all() && $photo->title)
     {
         $message = "Photo uploaded succesfully";
     }
@@ -28,19 +28,7 @@ if(isset($_POST['submit']))
     
 }
 
-
-
-
-
 ?>
-
-
-
-
-
-
-
-
 
 
         <!-- Navigation -->
@@ -52,7 +40,6 @@ if(isset($_POST['submit']))
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
             
             <!-- /.navbar-collapse -->
         </nav>
@@ -65,12 +52,10 @@ if(isset($_POST['submit']))
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Upload
-                           
+                            Upload                         
                         </h1>
                        
-                        
-                        <div class="col-md-6">
+                      <div class="col-md-6">
                         <?php echo $message; ?>
                         <form action="" method="post" enctype="multipart/form-data">
                             
@@ -92,17 +77,12 @@ if(isset($_POST['submit']))
                             </div>
                             
                             <div class="form-group">
-                                <label for="caption">Alternate Text</label>
-                                <input type="text" name="alternate_text" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
                                 <label for="caption">Description</label>
                                 <textarea class="form-control" name="description" id="" cols="30" rows="30"></textarea>
                                 
                             </div>
                             
-                            <input type="submit" name="submit">
+                            <input type="submit" name="submit" value="Submit">
                             
                             
                         </form>

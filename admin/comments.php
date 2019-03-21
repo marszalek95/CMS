@@ -20,15 +20,6 @@ $comments = Comment::find_all_pagination($items_per_page, $paginate->offset());
 ?>
 
 
-
-
-
-
-
-
-
-
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +29,6 @@ $comments = Comment::find_all_pagination($items_per_page, $paginate->offset());
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
             
             <!-- /.navbar-collapse -->
         </nav>
@@ -114,20 +104,18 @@ $comments = Comment::find_all_pagination($items_per_page, $paginate->offset());
                         if($paginate->has_next())
                         {
                             echo "<li class='next'><a href='comments.php?page={$paginate->next()}'>Next</a></li>";
-                        }
-                
-                        
+                        }                                     
                     }
                     
                     ?>
                     
                 </ul>
                 
-            </div>
+                </div>
             </div>
             <!-- /.container-fluid -->
 
         </div>
         <!-- /#page-wrapper -->
 
-  <?php include("includes/footer.php"); ?>; ?>
+  <?php include("includes/footer.php"); ?>

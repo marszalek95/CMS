@@ -1,4 +1,9 @@
 <?php
+/* 
+ * Helpful methods
+ */
+
+
 
 function classAutoLoader($class)
 {

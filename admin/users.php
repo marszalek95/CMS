@@ -19,16 +19,6 @@ $users = User::find_all_pagination($items_per_page, $paginate->offset());
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,8 +28,7 @@ $users = User::find_all_pagination($items_per_page, $paginate->offset());
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
-            
+           
             <!-- /.navbar-collapse -->
         </nav>
 
@@ -52,8 +41,7 @@ $users = User::find_all_pagination($items_per_page, $paginate->offset());
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Users
-                        </h1>
-                        
+                        </h1>                      
                         <a href="add_user.php" class="btn btn-primary">Add User</a>
                         
                         <div class="col-md-12">

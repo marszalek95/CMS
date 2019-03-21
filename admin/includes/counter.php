@@ -1,8 +1,11 @@
 <?php
+/* 
+ * Specific methods to operating counting site visits
+ */
+
 
 class Counter
-{
-    
+{  
     public static function count_visits() 
     {
         global $database;
@@ -24,9 +27,7 @@ class Counter
         else 
         {
             echo "no results";
-        }
-        
-        
+        }  
     }
 }
 

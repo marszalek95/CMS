@@ -10,8 +10,6 @@ if(empty($_GET['id']))
 
 $photo = Photo::find_by_id($_GET['id']);
 
-$author = User::find_by_id($photo->add_by_id);
-
 $comments = Comment::find_all_comments($_GET['id']);
 
 Photo::count_photo_views($_GET['id']);
@@ -33,20 +31,11 @@ redirect("photo.php?id={$_GET['id']}");
 
 }
 
-
-
-
-
 ?>
 
 
-
-
-
-
 <body>
-
-    
+  
 
     <!-- Page Content -->
     <div class="container">
@@ -60,11 +49,6 @@ redirect("photo.php?id={$_GET['id']}");
 
                 <!-- Title -->
                 <h1><?php echo $photo->title; ?></h1>
-
-                <!-- Author -->
-                <p class="lead">
-                    by <a href="add_by.php?id=<?php echo $photo->add_by_id; ?>"><?php echo "{$author->first_name} {$author->last_name}"; ?></a>
-                </p>
 
                 <hr>
 
@@ -80,7 +64,6 @@ redirect("photo.php?id={$_GET['id']}");
 
                 <!-- Post Content -->
                 <p class="lead"><?php echo $photo->caption; ?></p>
-                <p><?php echo $photo->alternate_text; ?></p>
                 <p><?php echo $photo->description; ?></p>
                 
 
@@ -134,15 +117,13 @@ redirect("photo.php?id={$_GET['id']}");
             <?php include("includes/sidebar.php"); ?>  
 
             </div>
+        </div>
         <!-- /.row -->
-
-       
-
-        
     </div>
+     
+
     
 
-</body>
 
-</html>
+
 <?php include("includes/footer.php"); ?>

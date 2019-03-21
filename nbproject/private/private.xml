@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/init.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/session.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/header.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/user.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/logout.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/top_nav.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/admin_content.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/database.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/includes/functions.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/index.php</file>
-            <file>file:/D:/PHP/XAMPP/htdocs/Netbeans/CMS/admin/login.php</file>
+            <file>file:/var/www/html/CMS/admin/includes/db_object.php</file>
+            <file>file:/var/www/html/CMS/admin/includes/admin_content.php</file>
         </group>
     </open-files>
 </project-private>

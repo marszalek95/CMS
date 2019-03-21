@@ -24,15 +24,6 @@ $author = User::find_by_id($user_id);
 ?>
 
 
-
-
-
-
-
-
-
-
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,21 +33,18 @@ $author = User::find_by_id($user_id);
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
-            
+           
             <!-- /.navbar-collapse -->
         </nav>
 
         <div id="page-wrapper">
 
             <div class="container-fluid">
-
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            My photos
-                          
+                            My photos                         
                         </h1>
                         <div class="col-md-12">
                             <table class="table table-hover">

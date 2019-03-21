@@ -1,13 +1,11 @@
 <?php include("includes/header.php"); ?>
-<?php include("includes/photo_library_modal.php"); ?>
 <?php if(!$session->is_signed_in()) {redirect("login.php");} 
 /* @var $user User*/
 ?>
 
-
-
 <?php
 
+$message = "";
 
 if(empty($_GET['id']))
 {
@@ -20,33 +18,34 @@ else
 
 if(isset($_POST['update']))
 {
-if($user)
-{
-    $user->delete_photo();
     $user->username = $_POST['username'];
     $user->first_name = $_POST['first_name'];
     $user->last_name = $_POST['last_name'];
-    $user->password = $_POST['password'];
-    $user->set_file($_FILES['file_upload']);
-    $user->user_image = $user->filename;
-    
-    $user->update();
-    $user->upload_photo();
-}
+    $user->description = $_POST['description'];
+        
+    if(!$user->username || !$user->password || !$user->first_name || !$user->last_name)
+    {
+        $message = "Some fields are empty!";
+    }
+    elseif($_FILES['file_upload']['size'] > 0)
+    {
+        $user->set_file($_FILES['file_upload']);
+        $user->delete_photo();
+        $user->user_image = $user->filename;
+        $user->upload_photo();
+    }
+    elseif(empty($user->errors))
+    {
+        $user->update();
+        $message = "User updated succesfully";
+    }
+    else
+    {
+        $message = join("<br>", $user->errors);
+    }
 }
 
 ?>
-
-        
-       
-
-
-
-
-
-
-
-
 
 
         <!-- Navigation -->
@@ -58,7 +57,6 @@ if($user)
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
             
             <!-- /.navbar-collapse -->
         </nav>
@@ -74,16 +72,10 @@ if($user)
                             User
                             <small>Edit</small>
                         </h1>
-                        
+                        <?php echo $message; ?>
                         <form action="" method="post" enctype="multipart/form-data">
                         <div class="col-md-6">
-                            
-                            <div class="form-group">
-                                
-                                <a href="#" data-toggle="modal" data-target="#photo-modal"><img class="user-photo-edit"  src="<?php echo $user->picture_path();  ?>" alt=""></a>
-                                
-                            </div>
-                            
+                        
                             
                             <div class="form-group">
                                 <input type="file" name="file_upload">
@@ -101,16 +93,16 @@ if($user)
                                 <input type="text" name="first_name" class="form-control" value="<?php echo $user->first_name; ?>">
                             </div>
                             
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label for="caption">Last Name</label>
                                 <input type="text" name="last_name" class="form-control" value="<?php echo $user->last_name; ?>">
                             </div>
                             
-                             <div class="form-group">
-                                <label for="caption">Password</label>
-                                <input type="text" name="password" class="form-control" value="<?php echo $user->password; ?>">
-                            </div>
-                            
+                            <div class="form-group">
+                                <label for="caption">Description</label>
+                                <textarea class="form-control" name="description" id="" cols="15" rows="15"><?php echo $user->description; ?></textarea>
+                                
+                            </div>    
                            
                             
                             <div class="form-group">
@@ -119,8 +111,8 @@ if($user)
                             </div>
                             
                             
-                        </div>
                             </div>
+                        </div>
                         
                         
                        

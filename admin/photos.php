@@ -18,19 +18,7 @@ $last_page = $paginate->last_page();
 $photos = Photo::find_all_pagination($items_per_page, $paginate->offset());
 
 
-
-
-
 ?>
-
-
-
-
-
-
-
-
-
 
 
         <!-- Navigation -->
@@ -42,8 +30,7 @@ $photos = Photo::find_all_pagination($items_per_page, $paginate->offset());
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
-            
+           
             <!-- /.navbar-collapse -->
         </nav>
 

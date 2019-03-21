@@ -4,21 +4,9 @@
 
 <?php
 
-
-$comments = Comment::find_new_comments();
-
-
+$comments = Comment::find_new_comments($session->user_id);
 
 ?>
-
-
-
-
-
-
-
-
-
 
 
         <!-- Navigation -->
@@ -45,9 +33,7 @@ $comments = Comment::find_new_comments();
                         <h1 class="page-header">
                            New comments
                         </h1>
-                        
-
-                        
+            
                         <div class="col-md-12">
                             <table class="table table-hover">
                                 <thead>

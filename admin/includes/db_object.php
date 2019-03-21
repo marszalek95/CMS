@@ -1,8 +1,12 @@
 <?php
+/* 
+ * Specific methods to operating database 
+ */
+
+
 
 class Db_object
 {
-    
     public $errors = array();
     public $upload_errors_array = array(
         UPLOAD_ERR_OK => "There is no error",
@@ -13,13 +17,16 @@ class Db_object
         UPLOAD_ERR_NO_TMP_DIR => "Missing a temporary folder",
         UPLOAD_ERR_CANT_WRITE => "Failed to write file to disk",
         UPLOAD_ERR_EXTENSION => "A PHP extemsion stopped the file upload"
-    );
-    
-    
+    );   
     
     public static function find_all()
     {
         return static::find_this_query("SELECT * FROM " . static::$db_table . "");
+    }
+    
+    public static function find_all_pagination($items_per_page, $offset)
+    {
+        return static::find_this_query("SELECT * FROM " . static::$db_table . " LIMIT {$items_per_page} OFFSET {$offset}");
     }
     
     public static function find_by_id($id)
@@ -149,8 +156,7 @@ class Db_object
         $database->query($sql);
         
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
-    }
-    
+    }  
     
     /* Photo functions */
     

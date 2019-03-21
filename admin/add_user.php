@@ -12,11 +12,19 @@ if(isset($_POST['submit']))
     $user->username = $_POST['username'];
     $user->first_name = $_POST['first_name'];
     $user->last_name = $_POST['last_name'];
-    $user->password = $_POST['password'];
+    $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $user->set_file($_FILES['file_upload']);
     $user->user_image = $user->filename;
     
-    if($user->save_all())
+    if(User::check_username($user->username))
+    {
+        $message = "This username is taken!";
+    }
+    elseif(!$user->username || !$user->password || !$user->first_name || !$user->last_name)
+    {
+        $message = "Some fields are empty!";
+    }
+    elseif($user->save_all())
     {  
         $message = "User added succesfully";
     }
@@ -39,8 +47,7 @@ if(isset($_POST['submit']))
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
-            
+          
             <!-- /.navbar-collapse -->
         </nav>
 
@@ -68,15 +75,14 @@ if(isset($_POST['submit']))
                                 <input type="text" name="username" class="form-control">
                                 
                             </div>
-                            
-                            
+                                                      
                             <div class="form-group">
                                 <label for="caption">First Name</label>
                                 <input type="text" name="first_name" class="form-control" >
                             </div>
                             
                             <div class="form-group">
-                                <label for="caption">Last Namet</label>
+                                <label for="caption">Last Name</label>
                                 <input type="text" name="last_name" class="form-control" >
                             </div>
                             
@@ -84,27 +90,17 @@ if(isset($_POST['submit']))
                                 <label for="caption">Password</label>
                                 <input type="password" name="password" class="form-control" >
                             </div>
-                            
-
-                            
+                                                   
                             <div class="form-group">
                                 <input type="submit" name="submit" value="Submit "class="btn btn-primary pull-right" >
-                            </div>
-                            
-                          
+                            </div>                         
                         </div>
-                        
-                        
-
-                    </form>
-
+                        </form>
                     </div>
                 </div>
                 <!-- /.row -->
-
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
 

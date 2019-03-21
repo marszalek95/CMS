@@ -1,8 +1,12 @@
 <?php
+/* 
+ * Specific methods to operating session
+ */
+
+
 
 class Session
 {
-    
     private $signed_id = false;
     public $user_id;
     public $message;
@@ -74,8 +78,7 @@ class Session
             unset($this->user_id);
             $this->signed_id = false;
         }
-    }
-    
+    }   
 }
 
 $session = new Session();

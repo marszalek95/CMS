@@ -4,7 +4,6 @@
 
 <?php
 
-
 if(empty($_GET['id']))
 {
     redirect("photos.php");
@@ -16,27 +15,17 @@ else
 
 if(isset($_POST['update']))
 {
-if($photo)
-{
-    $photo->title = $_POST['title'];
-    $photo->caption = $_POST['caption'];
-    $photo->alternate_text = $_POST['alternate_text'];
-    $photo->description = $_POST['description'];
-    
-    $photo->update();
-}
+    if($photo)
+    {
+        $photo->title = $_POST['title'];
+        $photo->caption = $_POST['caption'];
+        $photo->description = $_POST['description'];
+
+        $photo->update();
+    }
 }
 
 ?>
-
-
-
-
-
-
-
-
-
 
 
         <!-- Navigation -->
@@ -48,7 +37,6 @@ if($photo)
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 
             <?php include("includes/side_nav.php") ?>
-
             
             <!-- /.navbar-collapse -->
         </nav>
@@ -83,11 +71,6 @@ if($photo)
                             <div class="form-group">
                                 <label for="caption">Caption</label>
                                 <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption; ?>">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="caption">Alternate Text</label>
-                                <input type="text" name="alternate_text" class="form-control" value="<?php echo $photo->alternate_text; ?>">
                             </div>
                             
                             <div class="form-group">

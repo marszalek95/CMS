@@ -9,24 +9,27 @@ $query = $_GET['query'];
 
 $items_per_page = 4;
 
-$items_total_count = Photo::count_records();
+$items_total_count = Photo::count_records_by_search($query);
 
 $paginate = new Pagination($page, $items_per_page, $items_total_count);
 
 $photos = Photo::search_photo($query, $items_per_page, $paginate->offset());
 
-
-
 ?>
 
-        
+            <?php 
+            
+            if($items_total_count == 0)
+            {
+                echo "No items match your search.";
+            }
+            
+            ?>
 
             <!-- Blog Entries Column -->
             <div class="col-md-12">
 
-            <?php foreach ($photos as $photo): ?>
-                
-                
+            <?php foreach ($photos as $photo): ?>                             
                     
                     <div class="col-sm-6 col-md-3">
                         
@@ -36,11 +39,7 @@ $photos = Photo::search_photo($query, $items_per_page, $paginate->offset());
                             
                         </a>
                         
-                    </div>
-                    
-                
-                
-                
+                    </div>         
                 
                 
             <?php                endforeach; ?>

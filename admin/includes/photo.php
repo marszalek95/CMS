@@ -1,18 +1,19 @@
 <?php
-
+/* 
+ * Specific methods to operating photos and vievs counting
+ */
 
 
 class Photo extends Db_object
 {
     protected static $db_table = "photos";
-    protected static $db_table_fields = ['add_by_id', 'title', 'caption', 'description', 'filename', 'alternate_text', 'type', 'size', 'views', 'date'];
+    protected static $db_table_fields = ['add_by_id', 'title', 'caption', 'description', 'filename', 'type', 'size', 'views', 'date'];
     public $id;
     public $add_by_id;
     public $title;
     public $caption;
     public $description;
     public $filename;
-    public $alternate_text;
     public $type;
     public $size;
     public $views;
@@ -20,9 +21,7 @@ class Photo extends Db_object
 
     public $tmp_path;
     public $upload_directory = "images";
-
-    
-    
+  
     
     public static function count_records_by_user($user_id)
     {
@@ -32,6 +31,15 @@ class Photo extends Db_object
         $result_set = $database->query($sql);
         return mysqli_num_rows($result_set);
         
+    }
+    
+    public static function count_records_by_search($query)
+    {
+        global $database;
+        
+        $sql = "SELECT * FROM " . self::$db_table . " WHERE title LIKE '%{$query}%'";
+        $result_set = $database->query($sql);
+        return mysqli_num_rows($result_set);
     }
     
     public static function photos_added_by_user($user_id, $items_per_page, $offset)
@@ -48,7 +56,6 @@ class Photo extends Db_object
         
         return self::find_this_query($sql);
     }
-
 
     public static function count_photo_views($id) 
     {
@@ -73,10 +80,8 @@ class Photo extends Db_object
         {
             echo "no results";
         }
-    }
-    
-    
-    }
+    }  
+}
 
 
 

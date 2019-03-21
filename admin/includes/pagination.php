@@ -1,10 +1,12 @@
 <?php
+/* 
+ * Specific methods to using pagination
+ */
 
 
 
 class Pagination
 {
-    
     public $current_page;
     public $items_per_page;
     public $items_total_count;

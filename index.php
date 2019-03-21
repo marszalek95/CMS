@@ -18,14 +18,11 @@ Counter::count_visits();
 ?>
 
         
-
             <!-- Blog Entries Column -->
             <div class="col-md-12">
 
             <?php foreach ($photos as $photo): ?>
-                
-                
-                    
+                                
                     <div class="col-sm-6 col-md-3">
                         
                         <a class="thumbnail" href="photo.php?id=<?php echo $photo->id; ?>">
@@ -34,11 +31,7 @@ Counter::count_visits();
                             
                         </a>
                         
-                    </div>
-                    
-                
-                
-                
+                    </div>            
                 
                 
             <?php                endforeach; ?>
@@ -74,8 +67,7 @@ Counter::count_visits();
                         {
                             echo "<li class='next'><a href='index.php?page={$paginate->next()}'>Next</a></li>";
                         }
-                
-                        
+                                     
                     }
                     
                     ?>
@@ -83,8 +75,6 @@ Counter::count_visits();
                 </ul>
                 
             </div>
-
-
 
 
         <?php include("includes/footer.php"); ?>
