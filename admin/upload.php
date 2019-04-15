@@ -10,7 +10,6 @@ if(isset($_POST['submit']))
     $photo = new Photo();
     $photo->title = $_POST['title'];
     $photo->caption = $_POST['caption'];
-    $photo->alternate_text = $_POST['alternate_text'];
     $photo->description = $_POST['description'];
     $photo->add_by_id = $session->user_id;
     $photo->set_file($_FILES['file_upload']);

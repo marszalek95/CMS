@@ -17,6 +17,8 @@ if(isset($_POST['submit']))
     
     $user_found = User::verify_user($username);   
     
+    if($user_found)
+    {
     if(password_verify($password, $user_found->password))
     {
         $session->login($user_found);
@@ -26,6 +28,11 @@ if(isset($_POST['submit']))
     {
         $the_message = "Your password or username are incorrect! <br>";
 
+    }
+    }
+    else
+    {
+        $the_message = "User with this username not found";
     }
     
 }
