@@ -1,2 +1,4 @@
 /admin/images
 .DS_Store
+admin/includes/new_config.php
+nbproject/
